@@ -112,7 +112,6 @@ var startGame = function() {
     if (playerInfo.health > 0) {
       // let player konwwhat rond they are in, remember that arrays start at 0 so it needs to have 1 added to it
       window.alert("Welcome to Robot Gladiators! Round" + (i + 1));
-      debugger;
 
       // pick new enemy to fight based on the index of the enemy.names array
       var pickedEnemyObj = enemyInfo[i];
@@ -171,31 +170,28 @@ var endGame = function() {
 
 // go to shop between battles function
 var shop = function() {
-  playerInfo.health = playerInfo.health + 20;
-  playerInfo.money = playerInfo.money - 7;
   // ask player what they'd like to do
   var shopOptionPrompt = window.prompt(
-    "Would you like to REFILL you health, UPGRADE you attack, or LEAVE the store? Please enter one: 'REFILL', 'UPGRADE', or 'LEAVE' to make a choice."
+    "Would you like to REFILL you health, UPGRADE you attack, or LEAVE the store? Please enter one: 1 for REFILL, 2 for UPGRADE, or 3 to LEAVE."
     );
+
+  // convert answer from prompt to an actual number
+  shopOptionPrompt = parseInt(shopOptionPrompt);
+
   // use switch to carry out action
   switch (shopOptionPrompt) {
-    case "REFILL":
-    case "refill":
+    case 1:
       playerInfo.refillHealth();
       break;
 
-    case "UPGRADE": 
-    case "upgrade":
+    case 2:
       playerInfo.upgradeAttack();
       break;
-      
-    case "LEAVE": // new case    
-    case "leave":
+
+    case 3:
       window.alert("Leaving the store.");
-
-      // do nothing, so function will end
       break;
-
+      
     default:
       window.alert("You did not pick a valid option. Try agiain.");
 
@@ -205,9 +201,6 @@ var shop = function() {
   }
 };
 
-/* END GAME FUNCTIONS */
-
-/* GAME INFORMATION / VARIABLES */
 
 // function to set name
 var getPlayerName = function() {
@@ -220,6 +213,10 @@ var getPlayerName = function() {
   return name;
 
 }
+
+/* END GAME FUNCTIONS */
+
+/* GAME INFORMATION / VARIABLES */
 
 // player information
 var playerInfo = {
